@@ -36,7 +36,8 @@ def render(json_file_path: str, field_value_pairs: str, output_file_path: str):
         logger.error(f"{ex.__class__.__name__} occurred: {ex}")
         exit(1)
 
-    with open(output_file_path, "w+") as f:
+    os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
+    with open(output_file_path, "w") as f:
         json.dump(rendered_json, f, indent=2)
 
 
